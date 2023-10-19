@@ -5,7 +5,7 @@ import { addContact } from 'redux/contactsSlice'
 import { nanoid } from '@reduxjs/toolkit'
 
 
-export default function Form() {
+export default function Form({createContacts}) {
   const [name, setName] = useState('')
   const [number, setNumber] = useState('')
   const dispatch = useDispatch()
@@ -17,10 +17,7 @@ const handleChange = ({target:{value, name}}) => {
     setNumber(value)
   }
 };
-// const newContact ={
-//   ...dataByForm, 
-//   id: nanoid(),
-// }
+
 const newContact = {
   name,
   number,
