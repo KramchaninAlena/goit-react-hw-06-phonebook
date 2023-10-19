@@ -1,14 +1,16 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import css from '../Form/Form.module.css'
 import React, { useState } from 'react'
 import { addContact } from 'redux/contactsSlice'
 import { nanoid } from '@reduxjs/toolkit'
+import { selectContacts } from 'redux/selectors'
 
 
 export default function Form({createContacts}) {
   const [name, setName] = useState('')
   const [number, setNumber] = useState('')
   const dispatch = useDispatch()
+  const contacts = useSelector(selectContacts)
 
 const handleChange = ({target:{value, name}}) => {
   if (name === 'name') {
@@ -24,6 +26,7 @@ const newContact = {
 }
 const onSubmit = (evt) => {
   evt.preventDefault();
+    if (contacts.find(el => el.name === name)) return alert(`${name} this contact exists`);
   dispatch(addContact({...newContact, id: nanoid()}))
   setName('');
   setNumber('');

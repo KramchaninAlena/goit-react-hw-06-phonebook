@@ -9,8 +9,9 @@ export const contactsSlice = createSlice({
       state.push(action.payload)
     },
     deleteContact: (state, action) => {
-         const index=  state.findIndex(el =>el.id === action.payload)
-        state.splice(index, 1) 
+        //  const index=  state.findIndex(el =>el.id === action.payload)
+        // state.splice(index, 1) 
+        return state.filter(el => el.id !== action.payload)
     },
     
   },
